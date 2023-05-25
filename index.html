@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Block Coordinate Plug-and-Play Methods for Blind Inverse Problems">
+    <meta name="author" content="Weijie Gan, Shirin Shoushtari, Yuyang Hu, Jiaming Liu, Hongyu An, Ulugbek Kamilov">
+
+    <title>Block Coordinate Plug-and-Play Methods for Blind Inverse Problems</title>
+    <!-- Bootstrap core CSS -->
+    <!--link href="bootstrap.min.css" rel="stylesheet"-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="offcanvas.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="src/css/style.css">
+
+</head>
+
+<body>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container"></div>
+    <h2>Block Coordinate Plug-and-Play Methods</h2> 
+    <h2>for Blind Inverse Problems</h2>
+    <p class="abstract"><b>A block-coordinate PnP method with theoretical analysis for blind inverse problems </b></p>
+    <hr>
+    <p class="authors">
+        <a href="https://wjgancn.github.io">Weijie Gan<sup>1</sup></a>,
+        <a href="https://shirinsg.github.io/aboutme/">Shirin Shoushtari<sup>2</sup></a>,
+        <a href="https://hu-yuyang.github.io">Yuyang Hu<sup>2</sup></a>,
+        <a href="https://jiamingliu-jeremy.github.io">Jiaming Liu<sup>2</sup></a>,
+        <a href="https://www.mir.wustl.edu/employees/hongyu-an/">Hongyu An<sup>2,3,4,5</sup></a>,
+        <a href="https://engineering.wustl.edu/faculty/Ulugbek-Kamilov.html">Ulugbek S. Kamilov<sup>1,2</sup></a></br>
+    </p>
+    <p>
+        <a><sup>1</sup>Department of Computer Science & Engineering, Washington University in St. Louis, St. Louis, MO, USA</a></br>
+        <a><sup>2</sup>Department of Electrical & System Engineering, Washington University in St. Louis, St. Louis, MO, USA</a></br>
+        <a><sup>3</sup>Mallinckrodt Institute of Radiology, Washington University in St. Louis, St. Louis, MO, USA</a></br>
+        <a><sup>4</sup>Department of Biomedical Engineering, Washington University in St. Louis, St. Louis, MO, USA</a></br>
+        <a><sup>5</sup>Department of Neurology, Washington University in St. Louis, St. Louis, MO, USA</a></br>
+    </p>
+
+    <div class="btn-group" role="group" aria-label="Top menu">
+        <a class="btn btn-primary" href="https://arxiv.org/abs/2305.12672">Preprint</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <div class="row align-items-center">
+			<div class="col justify-content-center text-center">
+                <img src="img/pmri_hres.gif" style="width:67.5%" alt="Banner">
+                <p style="text-align: justify;"><b>Figure 1:</b> Evolution of the estimates provided by BC-PnP on compressive sensing parallel magnetic resonance imaging (CS-PMRI). Note how BC-PnP can provide high quality estimates of both the MR image and the coil sensitivity map.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+			<div class="col justify-content-center text-center">
+                <img src="img/deconv_hres.gif" style="width:67.5%" alt="Banner">
+                <p style="text-align: justify;"><b>Figure 2:</b> Evolution of the estimates provided by BC-PnP and the traditional PnP that uses a pre-estimated blur kernel on blind image deblurring. Note how by jointly estimating the image and the blur kernel, BC-PnP performs better than the traditional PnP.</p>
+            </div>
+        </div>
+        <br>
+        <h2>Abstract</h2>
+        <hr>
+        <p>
+            Plug-and-play (PnP) prior is a well-known class of methods for solving imaging inverse problems by computing fixed-points of operators combining physical measurement models and learned image denoisers. While PnP methods have been extensively used for image recovery with known measurement operators, there is little work on PnP for solving blind inverse problems. We address this gap by presenting a new block-coordinate PnP (BC-PnP) method that efficiently solves this joint estimation problem by introducing learned denoisers as priors on both the unknown image and the unknown measurement operator. We present a new convergence theory for BC-PnP compatible with blind inverse problems by considering nonconvex data-fidelity terms and expansive denoisers. Our theory analyzes the convergence of BC-PnP to a stationary point of an implicit function associated with an approximate minimum mean-squared error (MMSE) denoiser. We numerically validate our method on two blind inverse problems: automatic coil sensitivity estimation in magnetic resonance imaging (MRI) and blind image deblurring. Our results show that BC-PnP provides an efficient and principled framework for using denoisers as PnP priors for jointly estimating measurement operators and images.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Convergence Behaviour of BC-PnP</h2>
+        <hr>
+        <div class="row align-items-center">
+			<div class="col justify-content-center text-center">
+                <img src="img/exp_convergence.jpg" style="width:90%" alt="Banner">
+                <p><b>Figure 3:</b> Illustration of the BC-PnP convergence using the sequential and random i.i.d. block selection rules on CS-PMRI with the sampling factor R = 8. Leftmost two plots: Evolution of the distance between two consecutive image and CSM iterates. Rightmost three plots: Evolution of the RMSE and SSIM metrics relative to the true solutions across BC-PnP iterations. Note how both block selection rules lead to a nearly identical convergence behaviour of BC-PnP in this experiment.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>BC-PnP for compressed sensing parallel MRI (CS-PMRI) with automatic coil sensitivity calibration</h2>
+        <hr>
+
+        <div class="row align-items-center">
+			<div class="col justify-content-center text-center">
+                <img src="img/exp_pmri.jpg" style="width:90%" alt="Banner">
+                <p style="text-align: justify;"><b>Figure 4:</b> Illustration of results from several well-known methods on CS-PMRI with the sampling factor R = 6. The quantities in the top-left corner of each image provide RMSE and SSIM values for each method. The squares at the bottom of each image visualize the error and the corresponding zoomed area in the image. Note how BC-PnP using a deep denoiser on the unknown CSMs outperforms uncalibrated PnP and matches PnP-oracleθ that knows the true CSMs.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+			<div class="col justify-content-center text-center">
+                <img src="img/exp_pmri_theta.jpg" style="width:90%" alt="Banner">
+                <p style="text-align: justify;"><b>Figure 5:</b> Illustration of estimated CSM from several methods on CS-PMRI with the sampling factor R = 6. The top and the bottom rows are the magnitude and the phase of the CSMs, respectively. The quantities in the top-left corner of each image in the top row provide RMSE values for each method. Ground-truth image was obtained using the fully sampled data corresponding to the ground truth CSMs. This figure highlights the effectiveness of BC-PnP for estimating the measurement operator.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>BC-PnP for blind image deblurring</h2>
+        <hr>
+    </div>
+
+    <div class="section">
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+                <img src="img/exp_deconv_idx12.jpg" style="width:90%" alt="Banner">
+                <p style="text-align: justify;"><b>Figure 6:</b>  Illustration of results from several well-known methods on blind image deblurring with the Gaussian kernel. The squares at the top of each image show the estimated kernels. The quantities in the top-left corner of each image provide RMSE and SSIM values for each method. The squares at the bottom of each image highlight the error and the corresponding zoomed image region. Note how the BC-PnP using a deep denoiser on the unknown kernel significantly outperforms the traditional PnP method and matches the performance of the oracle PnP method that knows the true blur kernel. Note also the effectiveness of BC-PnP for estimating the unknown blur kernel.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Paper</h2>
+        <hr>
+        <div>
+            <div class="list-group">
+                <a href="https://arxiv.org/abs/2305.12672"
+                   class="list-group-item">
+                    <img src="img/paper_thumbnail.png" style="width:100%; margin-right:-20px; margin-top:-10px;">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Bibtex</h2>
+        <hr>
+        <div class="bibtexsection">
+            @article{Gan.etal2023,
+                author={Gan, Weijie
+                    and Shoushtari, Shirin
+                    and Hu, Yuyang,
+                    and Liu, Jiaming,
+                    and An, Hongyu 
+                    and Kamilov, Ulugbek S.},
+                title={Block Coordinate Plug-and-Play Methods for Blind Inverse Problems},
+                note={arXiv:2305.12672},
+                year={2023}
+              }
+        </div>
+    </div>
+    
+    <hr>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
