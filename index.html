@@ -53,43 +53,42 @@
         <div class="row align-items-center">
 			<div class="col justify-content-center text-center">
                 <img src="img/pmri_hres.gif" style="width:67.5%" alt="Banner">
-                <p style="text-align: justify;"><b>Figure 1:</b> Evolution of the estimates provided by BC-PnP on compressive sensing parallel magnetic resonance imaging (CS-PMRI). Note how BC-PnP can provide high quality estimates of both the MR image and the coil sensitivity map.</p>
+                <p style="text-align: justify;"><b>Figure 1:</b> Visual comparison of DRP with several well-known methods on Gaussian deblurring of color images. Note how DRP using restoration prior improvesover SOTA methods based on denoiser priors.</p>
             </div>
         </div>
 
         <div class="row align-items-center">
 			<div class="col justify-content-center text-center">
                 <img src="img/deconv_hres.gif" style="width:67.5%" alt="Banner">
-                <p style="text-align: justify;"><b>Figure 2:</b> Evolution of the estimates provided by BC-PnP and the traditional PnP that uses a pre-estimated blur kernel on blind image deblurring. Note how by jointly estimating the image and the blur kernel, BC-PnP performs better than the traditional PnP.</p>
+                <p style="text-align: justify;"><b>Figure 2:</b> Visual comparison of DRP and several well-known methods on single image super resolution. Note the excellent performance of the proposed DRP method using the SwinIR prior both visually and interms of PSNR.</p>
             </div>
         </div>
         <br>
         <h2>Abstract</h2>
         <hr>
         <p>
-            Plug-and-play (PnP) prior is a well-known class of methods for solving imaging inverse problems by computing fixed-points of operators combining physical measurement models and learned image denoisers. While PnP methods have been extensively used for image recovery with known measurement operators, there is little work on PnP for solving blind inverse problems. We address this gap by presenting a new block-coordinate PnP (BC-PnP) method that efficiently solves this joint estimation problem by introducing learned denoisers as priors on both the unknown image and the unknown measurement operator. We present a new convergence theory for BC-PnP compatible with blind inverse problems by considering nonconvex data-fidelity terms and expansive denoisers. Our theory analyzes the convergence of BC-PnP to a stationary point of an implicit function associated with an approximate minimum mean-squared error (MMSE) denoiser. We numerically validate our method on two blind inverse problems: automatic coil sensitivity estimation in magnetic resonance imaging (MRI) and blind image deblurring. Our results show that BC-PnP provides an efficient and principled framework for using denoisers as PnP priors for jointly estimating measurement operators and images.
-        </p>
+            Image denoisers have been shown to be powerful priors for solving inverse problems in imaging. Inthis work, we introduce a generalization of these methods that allows any image restoration network to beused as an implicit prior. The proposed method uses priors specified by deep neural networks pre-trainedas general restoration operators. The method provides a principled approach for adapting state-of-the-artrestoration models for other inverse problems.  Our theoretical result analyzes its convergence to astationary point of a global functional associated with the restoration operator. Numerical results showthat the method using a super-resolution prior achieves state-of-the-art performance both quantitativelyand qualitatively. Overall, this work offers a step forward for solving inverse problems by enabling the useof powerful pre-trained restoration models as priors.
     </div>
 
     <div class="section">
-        <h2>Convergence Behaviour of BC-PnP</h2>
+        <h2>Convergence Behaviour of DRP</h2>
         <hr>
         <div class="row align-items-center">
 			<div class="col justify-content-center text-center">
                 <img src="img/exp_convergence.jpg" style="width:90%" alt="Banner">
-                <p><b>Figure 3:</b> Illustration of the BC-PnP convergence using the sequential and random i.i.d. block selection rules on CS-PMRI with the sampling factor R = 8. Leftmost two plots: Evolution of the distance between two consecutive image and CSM iterates. Rightmost three plots: Evolution of the RMSE and SSIM metrics relative to the true solutions across BC-PnP iterations. Note how both block selection rules lead to a nearly identical convergence behaviour of BC-PnP in this experiment.</p>
+                <p><b>Figure 3:</b> llustration of the convergence behaviour of DRP for image deblurring and single image superresolution on the Set3c dataset. (a)-(b): Deblurring with Gaussian blur kernels of standard deviations 1.6 and2.0.(c)-(d):2× and 3× super resolution with the Gaussian blur kernel of standard deviation 2.0. </p>
             </div>
         </div>
     </div>
     
     <div class="section">
-        <h2>BC-PnP for compressed sensing parallel MRI (CS-PMRI) with automatic coil sensitivity calibration</h2>
+        <h2>Prior Refinement Strategy for the Super Resolution prior</h2>
         <hr>
 
         <div class="row align-items-center">
 			<div class="col justify-content-center text-center">
                 <img src="img/exp_pmri.jpg" style="width:90%" alt="Banner">
-                <p style="text-align: justify;"><b>Figure 4:</b> Illustration of results from several well-known methods on CS-PMRI with the sampling factor R = 6. The quantities in the top-left corner of each image provide RMSE and SSIM values for each method. The squares at the bottom of each image visualize the error and the corresponding zoomed area in the image. Note how BC-PnP using a deep denoiser on the unknown CSMs outperforms uncalibrated PnP and matches PnP-oracleθ that knows the true CSMs.</p>
+                <p style="text-align: justify;"><b>Figure 4:</b> Illustration of the impact of different SR factors in the prior used within DRP for image deblurring.We show three scenarios: (i) using only3×prior, (ii) using only2×prior, and (iii) the use of thepriorrefinement strategy, which combines both the 2× and 3× priors. Left: Convergence of PSNR against theiteration number for all three configurations.Right: Visual illustration of the final image for each setting.The visual difference is highlighted by the red arrow in the zoom-in box. Note how the reduction ofqcanlead to about 0.3 dB improvement in the final performance. </p>
             </div>
         </div>
 
